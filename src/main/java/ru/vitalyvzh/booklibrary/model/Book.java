@@ -1,9 +1,8 @@
 package ru.vitalyvzh.booklibrary.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 
 @Entity
 public class Book {
@@ -12,6 +11,10 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @OneToOne
+    @JsonBackReference
+    private Reader libraryClient;
 
     public Long getId() {
         return id;
@@ -27,5 +30,13 @@ public class Book {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Reader getLibraryClient() {
+        return libraryClient;
+    }
+
+    public void setLibraryClient(Reader libraryClient) {
+        this.libraryClient = libraryClient;
     }
 }

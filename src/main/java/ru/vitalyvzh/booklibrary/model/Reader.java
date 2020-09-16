@@ -1,5 +1,7 @@
 package ru.vitalyvzh.booklibrary.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,13 +9,12 @@ public class Reader {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "id", unique = true, nullable = false)
     private Long id;
-    //@Column(name = "name")
     private String name;
 
-//    @OneToOne
-//    private Book book;
+    @OneToOne
+    @JsonManagedReference
+    private Book book;
 
     public Long getId() {
         return id;
@@ -31,11 +32,11 @@ public class Reader {
         this.name = name;
     }
 
-//    public Book getBook() {
-//        return book;
-//    }
-//
-//    public void setBook(Book book) {
-//        this.book = book;
-//    }
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 }
