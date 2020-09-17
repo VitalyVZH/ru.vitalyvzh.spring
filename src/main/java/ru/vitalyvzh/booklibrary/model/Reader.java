@@ -3,6 +3,7 @@ package ru.vitalyvzh.booklibrary.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Reader {
@@ -12,9 +13,9 @@ public class Reader {
     private Long id;
     private String name;
 
-    @OneToOne
+    @OneToMany
     @JsonManagedReference
-    private Book book;
+    private List<Book> book;
 
     public Long getId() {
         return id;
@@ -32,11 +33,11 @@ public class Reader {
         this.name = name;
     }
 
-    public Book getBook() {
+    public List<Book> getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(List<Book> book) {
         this.book = book;
     }
 }

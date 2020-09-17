@@ -12,9 +12,12 @@ public class Book {
     private Long id;
     private String name;
 
-    @OneToOne
+    @ManyToOne
     @JsonBackReference
     private Reader libraryClient;
+
+//    @ManyToOne
+//    private Author author;
 
     public Long getId() {
         return id;
@@ -39,4 +42,12 @@ public class Book {
     public void setLibraryClient(Reader libraryClient) {
         this.libraryClient = libraryClient;
     }
+
+//    public Author getAuthor() {
+//        return author;
+//    }
+//
+//    public void setAuthor(Author author) {
+//        this.author = author;
+//    }
 }

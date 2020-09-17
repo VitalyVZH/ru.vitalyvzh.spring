@@ -1,15 +1,16 @@
 package ru.vitalyvzh.booklibrary.controller;
 
+import com.sun.tools.javac.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.vitalyvzh.booklibrary.model.Book;
 import ru.vitalyvzh.booklibrary.model.Reader;
 import ru.vitalyvzh.booklibrary.repository.BookRepository;
 import ru.vitalyvzh.booklibrary.repository.ReaderRepository;
 
-import java.util.List;
+//import java.util.List;
+
 
 @RestController
 public class ReaderController {
@@ -25,7 +26,7 @@ public class ReaderController {
     @GetMapping("/reader")
     public List<Reader> getAll() {
 
-        return readerRepository.findAll();
+        return (List<Reader>) readerRepository.findAll();
     }
 
     //возврат читателя по книге
@@ -46,7 +47,7 @@ public class ReaderController {
 
         bookRepository.save(book);
         book.setLibraryClient(reader);
-        reader.setBook(book);
+        reader.setBook(List.of(book));
 
         return readerRepository.save(reader);
     }
