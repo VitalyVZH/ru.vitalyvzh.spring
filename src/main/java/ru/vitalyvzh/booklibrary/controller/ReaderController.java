@@ -9,9 +9,6 @@ import ru.vitalyvzh.booklibrary.model.Reader;
 import ru.vitalyvzh.booklibrary.repository.BookRepository;
 import ru.vitalyvzh.booklibrary.repository.ReaderRepository;
 
-//import java.util.List;
-
-
 @RestController
 public class ReaderController {
 
