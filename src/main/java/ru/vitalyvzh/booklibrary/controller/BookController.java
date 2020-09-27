@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class BookController {
 
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
 
     public BookController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;

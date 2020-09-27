@@ -5,5 +5,6 @@ import ru.vitalyvzh.booklibrary.model.Reader;
 
 public interface ReaderRepository extends JpaRepository<Reader, Long> {
 
-    Reader findReaderByBookName(String name);
+    //Reader findReaderByBookName(String name);
+    Reader findReaderByAuthorName(String name);
 }

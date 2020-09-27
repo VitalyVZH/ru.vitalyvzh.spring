@@ -15,7 +15,8 @@ public class Reader {
 
     @OneToMany
     @JsonManagedReference
-    private List<Book> book;
+    private List<Author> author;
+//    private List<Book> book;
 
     public Long getId() {
         return id;
@@ -33,11 +34,19 @@ public class Reader {
         this.name = name;
     }
 
-    public List<Book> getBook() {
-        return book;
+    public List<Author> getAuthor() {
+        return author;
     }
 
-    public void setBook(List<Book> book) {
-        this.book = book;
+    public void setAuthor(List<Author> author) {
+        this.author = author;
     }
+
+    //    public List<Book> getBook() {
+//        return book;
+//    }
+//
+//    public void setBook(List<Book> book) {
+//        this.book = book;
+//    }
 }
