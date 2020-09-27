@@ -19,8 +19,6 @@ public class BookController {
     @GetMapping("/book")
     public List<Book> getAll() {
 
-        List<Book> all = bookRepository.findAll();
-        return all;
-        //return bookRepository.findAll();
+        return bookRepository.findAll();
     }
 }

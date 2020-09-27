@@ -16,12 +16,13 @@ public class ReaderController {
 
     private ReaderRepository readerRepository;
     private AuthorRepository authorRepository;
-    //private BookRepository bookRepository;
+    private BookRepository bookRepository;
 
 
-    public ReaderController(ReaderRepository readerRepository, AuthorRepository authorRepository) {
+    public ReaderController(ReaderRepository readerRepository, AuthorRepository authorRepository, BookRepository bookRepository) {
         this.readerRepository = readerRepository;
         this.authorRepository = authorRepository;
+        this.bookRepository = bookRepository;
     }
 
     @GetMapping("/reader")
@@ -30,19 +31,17 @@ public class ReaderController {
         return (List<Reader>) readerRepository.findAll();
     }
 
-    //возврат читателя по автору
     @GetMapping("/reader/author/{authorId}")
     public Reader getByAuthor(@PathVariable String authorId) {
 
         return readerRepository.findReaderByAuthorName(authorId);
     }
 
-//    //возврат читателя по книге
-//    @GetMapping("/reader/book/{bookId}")
-//    public Reader getByBook(@PathVariable String bookId) {
-//
-//        return readerRepository.findReaderByBookName(bookId);
-//    }
+    @GetMapping("/reader/book/{bookId}")
+    public Reader getByBook(@PathVariable String bookId) {
+
+        return readerRepository.findReaderByBookName(bookId);
+    }
 
     @GetMapping("/generate")
     public Reader generateData(){
@@ -53,16 +52,16 @@ public class ReaderController {
         Author author = new Author();
         author.setName("Remarque");
 
+        Book book = new Book();
+        book.setName("Arc_de_Triomphe");
+
         authorRepository.save(author);
+        bookRepository.save(book);
+
         author.setLibraryClient(reader);
         reader.setAuthor(List.of(author));
-
-//        Book book = new Book();
-//        book.setName("Arc_de_Triomphe");
-
-//        bookRepository.save(book);
-//        book.setLibraryClient(reader);
-//        reader.setBook(List.of(book));
+        book.setLibraryClient(reader);
+        reader.setBook(List.of(book));
 
         return readerRepository.save(reader);
     }
